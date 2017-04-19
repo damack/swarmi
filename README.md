@@ -8,7 +8,7 @@ Swarmi is a lightweight management UI which allows you to easily manage your Doc
 ## Getting started
 
 ### Deploy Swarmi
-docker run -d --name swarmi -p 9000:9000 -e GITHUB_CLIENT_ID=x -e GITHUB_CLIENT_SECRET=x -e GITHUB_CALLBACK_URL=x damack/swarmi:latest
+docker run -d --name swarmi -p 9000:9000 -e GITHUB_CLIENT_ID=x -e GITHUB_CLIENT_SECRET=x -e GITHUB_CALLBACK_URL=x -v /var/run/docker.sock:/var/run/docker.sock damack/swarmi:latest
 
 ## Getting help
 
