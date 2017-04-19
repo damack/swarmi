@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="swarmi">
+
+<head>
+    <title>SwarmI</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- build:css css/vendor.css -->
+    <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="css/vendor/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/vendor/loading-bar.min.css" />
+    <link rel="stylesheet" href="css/vendor/toaster.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- endbuild -->
+    <!-- build:css css/app.css -->
+    <link rel="stylesheet" href="css/app.css" />
+    <!-- endbuild -->
+
+    <!-- build:js js/login.js -->
+    <script src="app/login.js"></script>
+    <!-- endbuild -->
+</head>
+
+<body ng-controller="AppCtrl">
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar-header">
+            <span class="navbar-brand">
+                <i class="fa fa-cubes" aria-hidden="true"></i> SwarmI
+            </span>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li ng-class="{active: isActive('/dashboard')}"><a href="#!/dashboard">Dashboard<span class="menu-icon fa fa-tachometer"></span></a></li>
+                    <li ng-class="{active: isActive('/nodes')}"><a href="#!/nodes">Nodes<span class="menu-icon fa fa-server"></span></a></li>
+                    <li ng-class="{active: isActive('/networks')}"><a href="#!/networks">Networks<span class="menu-icon fa fa-sitemap"></span></a></li>
+                    <!--<li ng-class="{active: isActive('/volumes')}"><a href="#!/volumes">Volumes<span class="menu-icon fa fa-cubes"></span></a></li>-->
+                    <li ng-class="{active: isActive('/services')}"><a href="#!/services">Services<span class="menu-icon fa fa-list-alt"></span></a></li>
+                    <!--<li ng-class="{active: isActive('/templates')}"><a href="#!/templates">Templates<span class="menu-icon fa fa-rocket"></span></a></li>-->
+                    <!--<li ng-class="{active: isActive('/users')}"><a href="#!/users">Users<span class="menu-icon fa fa-user"></span></a></li>-->
+                </ul>
+            </nav>
+            <main class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <toaster-container class="toaster-container"></toaster-container>
+                <div ng-view></div>
+            </main>
+        </div>
+    </div>
+
+    <!-- build:js js/vendor.js -->
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/angular-route.min.js"></script>
+    <script src="js/vendor/angular-animate.min.js"></script>
+    <script src="js/vendor/angular-resource.min.js"></script>
+    <script src="js/vendor/angular-confirm.min.js"></script>
+    <script src="js/vendor/ui-bootstrap-tpls.min.js"></script>
+    <script src="js/vendor/loading-bar.min.js"></script>
+    <script src="js/vendor/toaster.min.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js -->
+    <script src="app/app.js"></script>
+    <script src="app/services/swarmService.js"></script>
+    <script src="app/services/nodesService.js"></script>
+    <script src="app/services/nodeTasksService.js"></script>
+    <script src="app/services/networksService.js"></script>
+    <script src="app/services/servicesService.js"></script>
+    <script src="app/services/serviceTasksService.js"></script>
+    <script src="app/services/volumesService.js"></script>
+    <script src="app/services/tasksService.js"></script>
+    <script src="app/controllers/appCtrl.js"></script>
+    <script src="app/controllers/dashboardCtrl.js"></script>
+    <script src="app/controllers/nodesCtrl.js"></script>
+    <script src="app/controllers/nodeCtrl.js"></script>
+    <script src="app/controllers/networksCtrl.js"></script>
+    <script src="app/controllers/volumesCtrl.js"></script>
+    <script src="app/controllers/serviceCtrl.js"></script>
+    <script src="app/controllers/servicesCtrl.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>

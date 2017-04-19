@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <h5 class="pull-left">
+            <i class="fa fa fa-list-alt" ng-class="icon"></i> Services
+        </h5>
+        <div class="pull-right">
+            <button class="btn btn-primary" ng-click="add()">
+                <i class="fa fa-plus"></i> Add
+            </button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Ready</th>
+                    <th>Networks</th>
+                    <th>Ports</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="service in services | orderBy:'-Spec.Name'">
+                    <td><a href="#!/services/{{service.ID}}">{{service.Spec.Name}}</a></td>
+                    <td>{{service.Spec.TaskTemplate.ContainerSpec.Image}}</td>
+                    <td>({{service.running}}/{{service.Spec.Mode.Replicated.Replicas}})</td>
+                    <td>
+                        <span ng-repeat="network in service.Spec.Networks">{{network.Target}} </span>
+                    </td>
+                    <td>
+                        <span ng-repeat="port in service.Spec.EndpointSpec.Ports">{{port.PublishedPort}} </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.brackets.json
+.gitignore
+.jshintrc
+test
+.DS_Store
+node_modules
+bower_components
+.tmp
+_build
+db
+LICENSE
+README.md
+
+# Logs
+logs
+*.log
+
+# Coverage directory used by tools like istanbul
+coverage

@@ -1,0 +1,153 @@
+<ol class="breadcrumb">
+    <li><a href="#!/services">Services</a></li>
+    <li class="active">{{service.Spec.Name}}</li>
+</ol>
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <h5 class="pull-left">
+            <i class="fa fa-object-group" ng-class="icon"></i> Service
+        </h5>
+        <div class="pull-right">
+            <button class="btn btn-success" ng-click="save()">
+                <i class="fa fa-floppy-o"></i><span> Save</span>
+            </button>
+            <button class="btn btn-danger" ng-click="del()" ng-hide="create">
+                <i class="glyphicon glyphicon-trash"></i>
+            </button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" ng-model="service.Spec.Name">
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input type="text" class="form-control" ng-model="service.Spec.TaskTemplate.ContainerSpec.Image">
+            </div>
+            <div class="form-group">
+                <label>Mode</label>
+                <br>
+                <label class="radio-inline">
+                    <input type="radio" name="mode" ng-model="service.Mode" value="Global" ng-checked="!service.Spec.Mode.Replicated"> Global
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="mode" ng-model="service.Mode" value="Replicated" ng-checked="service.Spec.Mode.Replicated"> Replicated
+                </label>
+            </div>
+            <div class="form-group" ng-hide="service.Mode === 'Global'">
+                <label>Replicas</label>
+                <input type="number" class="form-control" ng-model="service.Spec.Mode.Replicated.Replicas">
+            </div>
+            <div class="form-group">
+                <label>Parallelism</label>
+                <input type="number" class="form-control" ng-model="service.Spec.UpdateConfig.Parallelism">
+            </div>
+            <uib-tabset active="active">
+                <uib-tab index="0" heading="Ports">
+                    <br>
+                    <div ng-repeat="port in service.Spec.EndpointSpec.Ports">
+                        <div class="input-group">
+                            <span class="input-group-addon">Host</span>
+                            <input type="text" class="form-control" ng-model="port.PublishedPort">
+                            <span class="input-group-addon">Container</span>
+                            <input type="text" class="form-control" ng-model="port.TargetPort">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="delPort(port.PublishedPort)">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary" ng-click="addPort()">
+                        <i class="fa fa-plus"></i> Add
+                    </button>
+                </uib-tab>
+                <uib-tab index="1" heading="Environment Variables">
+                    <br>
+                    <div ng-repeat="env in service.Envs">
+                        <div class="input-group">
+                            <span class="input-group-addon">Name</span>
+                            <input type="text" class="form-control" ng-model="env.name">
+                            <span class="input-group-addon">Value</span>
+                            <input type="text" class="form-control" ng-model="env.value">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="delEnv(env.name)">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary" ng-click="addEnv()">
+                        <i class="fa fa-plus"></i> Add
+                    </button>
+                </uib-tab>
+                <uib-tab index="2" heading="Networks">
+                    <br>
+                    <div ng-repeat="network in service.Spec.Networks">
+                        <div class="input-group">
+                            <select class="form-control" ng-model="network.Target">
+                                <option ng-repeat="network in networks" value="{{network.Id}}">{{network.Name}}</option>
+                            </select>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="delNetwork(network.Target)">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary" ng-click="addNetwork()">
+                        <i class="fa fa-plus"></i> Add
+                    </button>
+                </uib-tab>
+                <uib-tab index="3" heading="Constraints">
+                    <br>
+                    <div ng-repeat="(key, value) in service.Spec.TaskTemplate.Placement.Constraints">
+                        <div class="input-group">
+                            <span class="input-group-addon">Value</span>
+                            <input type="text" class="form-control" ng-model="value">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="delConstraint(key)">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary" ng-click="addConstraint()">
+                        <i class="fa fa-plus"></i> Add
+                    </button>
+                </uib-tab>
+            </uib-tabset>
+        </form>
+    </div>
+</div>
+<div class="panel panel-default" ng-hide="create">
+    <div class="panel-heading">
+        <h5><i class="fa fa-tasks"></i> Tasks</h5>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Status</th>
+                    <th>Image</th>
+                    <th>Last update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in tasks | orderBy:'-Status.State'" uib-tooltip="{{task.Status.Err}}">
+                    <td>{{task.ID}}</td>
+                    <td>{{task.Status.State}}</td>
+                    <td>{{task.Spec.ContainerSpec.Image}}</td>
+                    <td>{{task.UpdatedAt}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

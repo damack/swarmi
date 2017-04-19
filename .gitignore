@@ -29,9 +29,18 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
+bower_components
+_build
 
 # Optional npm cache directory
 .npm
+.tmp
 
 # Optional REPL history
 .node_repl_history
+
+/src/public/js/vendor/*
+/src/public/css/vendor/*
+/src/public/css/fonts/*
+/src/public/fonts/*
+db

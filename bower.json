@@ -1,0 +1,30 @@
+{
+  "name": "swarmi",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "damack"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/damack/swarmi",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-route": "^1.6.3",
+    "angular-resource": "^1.6.3",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "angular-loading-bar": "^0.9.0",
+    "angular-confirm-modal": "^1.2.6",
+    "AngularJS-Toaster": "angularjs-toaster#^2.1.0",
+    "angular-animate": "^1.6.3",
+    "angular-bootstrap": "^2.5.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

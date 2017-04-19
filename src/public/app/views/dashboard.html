@@ -1,0 +1,107 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5><i class="fa fa-object-group" ng-class="icon"></i> Cluster status</h5>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td>Nodes</td>
+                    <td>{{nodes.length}}</td>
+                </tr>
+                <tr>
+                    <td>Total CPU</td>
+                    <td>{{swarm.cpu | cpu}}</td>
+                </tr>
+                <tr>
+                    <td>Total memory</td>
+                    <td>{{swarm.memory | bytes:2}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <a href="#!/nodes">
+            <div class="panel panel-default widget">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-server fa-3x icon"></i>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="title">{{nodes.length}}</div>
+                            <div>Nodes</div>
+                        </div>
+                        <div class="col-xs-4 pull-right">
+                            <i class="fa fa-heartbeat green-icon"></i> {{node.green}} running
+                            <br>
+                            <i class="fa fa-heartbeat red-icon"></i> {{node.red}} stopped
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    </div>
+    <div class="col-md-6">
+        <a href="#!/services">
+            <div class="panel panel-default widget">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-list-alt fa-3x icon"></i>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="title">{{services.length}}</div>
+                            <div>Services</div>
+                        </div>
+                        <div class="col-xs-4 pull-right">
+                            <!--
+                            <i class="fa fa-heartbeat green-icon"></i> {{service.green}} running
+                            <br>
+                            <i class="fa fa-heartbeat red-icon"></i> {{service.green}} stopped
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a href="#!/networks">
+            <div class="panel panel-default widget">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-sitemap fa-3x icon"></i>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="title">{{networks.length}}</div>
+                            <div>Networks</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!--
+    <div class="col-md-6">
+        <a href="#!/templates">
+            <div class="panel panel-default widget">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-rocket fa-3x icon"></i>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="title">{{templates.length}}</div>
+                            <div>Templates</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>-->
+</div>

@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <h5 class="pull-left">
+            <i class="fa fa-cubes" ng-class="icon"></i> Add Volume
+        </h5>
+        <div class="pull-right">
+            <button class="btn btn-success" ng-click="save()">
+                <i class="fa fa-floppy-o"></i><span> Save</span>
+            </button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" ng-model="volume.name">
+            </div>
+            <div class="form-group">
+                <label>Driver</label>
+                <select class="form-control" ng-model="volume.driver">
+                    <option>local</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5><i class="fa fa fa-cubes" ng-class="icon"></i> Volumes</h5>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Driver</th>
+                    <th>Mountpoint</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="volume in volumes | orderBy:'-Name'">
+                    <td>{{volume.Name}}</td>
+                    <td>{{volume.Driver}}</td>
+                    <td>{{volume.Mountpoint}}</td>
+                    <td>
+                        <button class="btn btn-danger btn-xs" ng-click="del(volume.Name)">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5><i class="fa fa-object-group" ng-class="icon"></i> Cluster status</h5>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td>Nodes</td>
+                    <td>{{nodes.length}}</td>
+                </tr>
+                <tr>
+                    <td>Total CPU</td>
+                    <td>{{swarm.cpu | cpu}}</td>
+                </tr>
+                <tr>
+                    <td>Total memory</td>
+                    <td>{{swarm.memory | bytes:2}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <h5 class="pull-left">
+            <i class="fa fa fa-hdd-o" ng-class="icon"></i> Nodes
+        </h5>
+        <div class="pull-right">
+            <!--
+            <button class="btn btn-primary" ng-click="add()">
+                <i class="fa fa-plus"></i> Add
+            </button>
+            -->
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>CPU</th>
+                    <th>Memory</th>
+                    <th>Engine</th>
+                    <th>IP Address</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="node in nodes | orderBy:'-Description.Hostname'">
+                    <td ng-show="!node.Spec.Name"><a href="#!/nodes/{{node.ID}}">{{node.Description.Hostname}}</a></td>
+                    <td ng-show="node.Spec.Name"><a href="#!/nodes/{{node.ID}}">{{node.Spec.Name}}</a></td>
+                    <td>{{node.Spec.Role}}</td>
+                    <td>{{node.Description.Resources.NanoCPUs | cpu}}</td>
+                    <td>{{node.Description.Resources.MemoryBytes | bytes}}</td>
+                    <td>{{node.Description.Engine.EngineVersion}}</td>
+                    <td>{{node.Status.Addr}}</td>
+                    <td><span class="label label-success">{{node.Status.State}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
